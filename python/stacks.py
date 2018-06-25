@@ -3,23 +3,33 @@ class Stack:
     top = 0
 
     def __init__(self, length):
-        Stack.size = [None]*10
-
+        Stack.size = [None]*length
     def pop(self):
-        popped = Stack.top
-        print('Popped :'+popped)
+        if(self.top<1):
+            print("Already Empty")
+        else:
+         self.size[self.top]=None
+         popped = Stack.top
+         print('Popped :'+popped)
+         self.top =self.top-1
 
     def push(self, what):
-        self.size[self.top+1] = what
+        if(self.top>9):
+         print("Stack already filled")
+        else:
+         self.size[self.top+1] = what
+         self.top=self.top+1  
 
-    def pr(self):
-        print(Stack.size == self.size)
+    def show(self):
+        print(self.size)
 
+# Entry point for Stack
 
 class run:
-    def __init__(self, length):
-        s = Stack(length)
-        s.pr()
+    def __init__(self, length):     
+     s = Stack(length)
+     s.show()
 
 
-r = run(8)
+no=int(input("Enter stack length: "))
+r=run(no)
