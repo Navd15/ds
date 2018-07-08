@@ -1,34 +1,50 @@
 class queue:
     DEFAULT_SIZE=10
 
-    def__init__(self):
+    def __init__(self):
      self._data=None*queue.DEFAULT_SIZE
      self._size=0
      self._front=0
 
-    def__len__(self):
+    def __len__(self):
         return self._size
 
     def is_empty(self):
         return self._size==0
 
     def first(self):
+         if self.is_empty():
+          raise Exception('Queue is Empty')
 
-        if self.is_empty()
-          raise Empty('Queue is Empty')
-
-        return self._data[self._front]
+         return self._data[self._front]
 
 
-    def dequeue(self)
-     f self.is empty(): 
-     raise Empty( Queue is empty )
- 
-      answer = self. data[self. front]
-      self. data[self. front] = None # help garbage collection
-      self. front = (self. front + 1) % len(self. data)
-      self. size −= 1       
-      return answer
+    def dequeue(self):
+       if self.is_empty(): 
+         raise Exception('Queue is empty')
+
+       answer=self._data(self._front)
+       self._data[self._front]=None
+       self._front=(self._front+1)% len(self._data)
+       self._size -=1
+       return answer
+
+    def enqueue(self,e):
+        if self._size==len(self._data):
+         self._resize(2*len(self._data))
+         avail=(self._front + self._size)% len(self._data)
+         self._data(avail)=e
+         self._size +=1
+            
+    def _resize(self,cap):
+
+        old=self._data
+        self._data=[None]*cap
+        walk=self._front
+        for k in range(self._size):
+            self._data =old[walk]
+            walk=(1+walk)%len(old)
+        self._front=0    
 
 
 
