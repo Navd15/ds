@@ -2,7 +2,7 @@ class queue:
     DEFAULT_SIZE=10
 
     def __init__(self):
-     self._data=None*queue.DEFAULT_SIZE
+     self._data=[None]*queue.DEFAULT_SIZE
      self._size=0
      self._front=0
 
