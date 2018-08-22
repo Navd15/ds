@@ -32,7 +32,7 @@ class ST:
 
 
     def __add(self,root,key,value):
-            cmp=root.key
+            cmp=root.key 
             if key>cmp:
                 if root.rightChild==None:
                     root.rightChild=ST.__Node(key,value)
@@ -53,6 +53,26 @@ class ST:
 
         return self.__search(ST.__root,key) 
 
+    def min(self):
+        if ST.__root==None:
+            return "Tree is empty"
+        return self.__findMin(ST.__root)
+
+    def max(self):
+        if ST.__root==None:
+            return "Tree is empty"
+        return self.__findMax(ST.__root)    
+    
+    def __findMax(self,node):
+        if node.rightChild==None:
+             return node.key
+        return self.__findMax(node.rightChild)   
+
+    def __findMin(self,node):
+        if node.leftChild==None:
+            return node.key
+        return self.__findMin(node.leftChild)  
+    
     def __search(self,root,key):
         if root==None:
           return "Not found"
@@ -68,13 +88,11 @@ class ST:
 
 
 
-
-s=ST("A",6)
+# Runner code
+s=ST("F",6)
 s.put("E",3)
 s.put("C",8)
 s.put("B",0)
 
-print(s.contains("R"))
-
-
+print(s.min())
 
