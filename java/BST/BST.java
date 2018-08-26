@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class BST<K,V> {
 private Node<K,V> root=null;
 
@@ -35,15 +38,37 @@ public void put(K key,V value){
 root=put(root, key, value);
 }
 
+public Object get(K key){
+    return contains(root, key);
+}
+
+public V delete(K key){
+if(contains(root, key).equals(null)){
+return "Key not present";
+
+}
+else
+return contains(root, key);
+
+
+}
 
 public Object r(){
     return root.rightChild.key;
 }
+
 public int rank(K key){
 
     return rank(root,key);
 }
 
+public Iterable<K> keys(){
+Queue<K> q=new LinkedList<K>() ;
+inorder(root,q);
+
+return q;
+
+}
 public K max(){return max(root);
 }
 public K min(){
@@ -51,6 +76,49 @@ return min(root);
 
 }
 /* ============================== */
+private Object contains(Node node,K key){
+    if(node==null){
+return null;
+
+
+    }
+int cmp=((Comparable <K>)key).compareTo((K)node.key);
+
+    if(cmp==0)
+    return node.value;
+
+if(cmp>0){
+    return contains(node.rightChild, key);
+}
+else 
+return contains(node.leftChild, key);
+
+}
+
+private void inorder(Node node,Queue q){
+if(node==null) return;
+inorder(node.leftChild, q);
+q.add(node.key);
+inorder(node.rightChild, q);
+
+}
+private Node deleteMin(Node node){
+if(node.leftChild==null) return node.rightChild;
+node.leftChild=deleteMin(node.leftChild);
+node.count=1+size(node.leftChild)+size(node.rightChild);
+return node;
+
+}
+
+private Object delete(Node node,K key){
+if(node==null){
+return null;
+}
+int cmp=((Comparable <K>)(key)).compareTo((K)node.key);
+if(cmp>0)
+
+
+}
 private int rank(Node node,K key)
 {
 if (node==null) return 0;
@@ -74,7 +142,7 @@ private K max(Node node){
     return max(node.rightChild);
 }
 
-
+ 
 private K min(Node node){
 if(node.leftChild==null)
 return (K)node.key;
