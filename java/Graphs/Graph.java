@@ -24,7 +24,7 @@ Bag<Integer>[] vert;
 
     public Iterable<Integer> adj(int v){
 
-        return vert[v];
+        return  vert[v];
     }
     
 }
