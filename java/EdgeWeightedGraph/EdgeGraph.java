@@ -13,8 +13,14 @@ public class EdgeGraph {
     }
     }
     public void addEdge(Edge edge){
-
-
+     int v=edge.eitherVertex(),w=edge.alternateVertex(v);
+adj[v].add(edge);
+adj[w].add(edge);
     }
+
+    public Iterable<Edge> adj(int v){
+        return adj[v];
+    }
+
 
 }
